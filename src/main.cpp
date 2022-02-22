@@ -47,10 +47,23 @@ int main(int argc, char* argv[])
 
         BeginRLImGui();
 
-        static bool ImGuiDemoOpen = true;
+        static bool ImGuiDemoOpen = false;
+
+        if (IsKeyPressed(KEY_F1))
+        {
+            ImGuiDemoOpen = !ImGuiDemoOpen;
+        }
+
+        DrawText("F1 to open dev menu", 10, 10, 36, Color{255, 0, 255 , 255});
 
         if (ImGuiDemoOpen)
-            ImGui::ShowDemoWindow(&ImGuiDemoOpen);
+        {
+            ImGui::Begin("Dev menu", &ImGuiDemoOpen);
+
+            ImGui::Text("Salut");
+
+            ImGui::End();
+        }
 
         EndRLImGui();
 
