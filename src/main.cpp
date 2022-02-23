@@ -4,7 +4,6 @@
 #include "imgui.h"
 #include "rlImGui.h"
 
-#include "pet.h"
 #include "app.h"
 
 int main(int argc, char* argv[])
