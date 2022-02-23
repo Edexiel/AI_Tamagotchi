@@ -16,14 +16,17 @@ void App::Init() {
 }
 
 void App::Update() {
+    devMenu.Update();
+}
+
+void App::Render() {
     BeginDrawing();
     ClearBackground(DARKGRAY);
 
     BeginRLImGui();
 
     DrawText("F1 to open dev menu", 10, 10, 36, Color{255, 0, 255, 255});
-    devMenu.Update();
-
+    devMenu.Render();
     EndRLImGui();
     EndDrawing();
 }

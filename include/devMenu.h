@@ -5,5 +5,6 @@
 class DevMenu {
 public:
     void Update();
+    void Render();
     bool isOpen = false;
 };

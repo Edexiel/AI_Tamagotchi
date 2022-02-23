@@ -15,6 +15,7 @@ int main(int argc, char* argv[])
     while (!WindowShouldClose())
     {
         app.Update();
+        app.Render();
     }
     app.Close();
 
