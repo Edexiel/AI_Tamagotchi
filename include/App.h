@@ -3,6 +3,7 @@
 #include "DevMenu.h"
 
 #include "raylib.h"
+#include "Pet.h"
 
 class App {
     friend DevMenu;
@@ -20,9 +21,7 @@ public:
 private:
     DevMenu devMenu;
 
-    bool buttonHovered = false;
-    Rectangle btnBounds;
     Texture2D spriteSheet;
-    int animalSpriteIndex;
+    Pet pet;
 };
 

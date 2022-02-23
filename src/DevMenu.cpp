@@ -42,8 +42,8 @@ void DevMenu::Render() {
 
         ImGui::Text("Salut");
 
-        ImGui::SliderInt("SpriteIndex", &app->animalSpriteIndex, 0, (int)Animal::Size - 1);
-        ImGui::LabelText("Animal", "%s", animalNames[app->animalSpriteIndex]);
+        ImGui::SliderInt("SpriteIndex", &app->pet.spriteSheetIndex, 0, (int)Animal::Size - 1);
+        ImGui::LabelText("Animal", "%s", animalNames[app->pet.spriteSheetIndex]);
 
         static UtilityCurves::CurveSignature currentSignature = UtilityCurves::step;
         SelectCurve(currentSignature);

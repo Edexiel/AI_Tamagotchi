@@ -20,9 +20,8 @@ set(TRY_HARD_WINGS_SRC
         src/UtilitySystem/Action.cpp
         src/UtilitySystem/Blackboard.cpp
         src/UtilitySystem/UtilityBase.cpp
-        src/Curves.cpp)
-
-
+        src/Curves.cpp
+        src/Pet.cpp)
 
 
 add_executable(Tamagotchi ${TRY_HARD_WINGS_SRC} ${IMGUI_SRC} external/rlImGui/rlImGui.cpp)
