@@ -9,7 +9,7 @@ set(TRY_HARD_WINGS_SRC
         src/app.cpp
         src/devMenu.cpp
         src/main.cpp
-        )
+)
 
 set(IMGUI_SRC
         external/imgui/imgui.cpp
