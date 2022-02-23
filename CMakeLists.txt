@@ -5,13 +5,6 @@ set(CMAKE_CXX_STANDARD 17)
 
 add_subdirectory(external/raylib)
 
-set(TRY_HARD_WINGS_SRC
-        src/app.cpp
-        src/devMenu.cpp
-        src/main.cpp
-        src/curves.cpp
-        )
-
 set(IMGUI_SRC
         external/imgui/imgui.cpp
         external/imgui/imgui_demo.cpp
@@ -19,6 +12,17 @@ set(IMGUI_SRC
         external/imgui/imgui_tables.cpp
         external/imgui/imgui_widgets.cpp
         )
+
+set(TRY_HARD_WINGS_SRC
+        src/app.cpp
+        src/devMenu.cpp
+        src/main.cpp
+        src/UtilitySystem/Action.cpp
+        src/UtilitySystem/Blackboard.cpp
+        src/UtilitySystem/UtilityBase.cpp
+        src/curves.cpp)
+
+
 
 
 add_executable(Tamagotchi ${TRY_HARD_WINGS_SRC} ${IMGUI_SRC} external/rlImGui/rlImGui.cpp)
