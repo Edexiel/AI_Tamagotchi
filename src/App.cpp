@@ -29,16 +29,14 @@ void App::Update() {
     if (IsMouseButtonDown(MOUSE_BUTTON_LEFT) && CheckCollisionPointRec(GetMousePosition(), pet.GetCollisionRect())) {
         pet.position = Vector2Add(pet.position, GetMouseDelta());
     }
-}
 
-void App::Render() {
     BeginDrawing();
     ClearBackground(DARKGRAY);
 
     BeginRLImGui();
 
     DrawText("F1 to open dev menu", 10, 10, 24, Color{255, 0, 255, 255});
-    devMenu.Render();
+    devMenu.Update();
 
     pet.Draw(spriteSheet);
 

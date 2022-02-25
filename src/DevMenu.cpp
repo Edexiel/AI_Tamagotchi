@@ -34,9 +34,7 @@ void DevMenu::Update() {
     if (IsKeyPressed(KEY_F1)) {
         isOpen = !isOpen;
     }
-}
 
-void DevMenu::Render() {
     if (isOpen) {
         ImGui::Begin("Dev menu", &isOpen);
 
