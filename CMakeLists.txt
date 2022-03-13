@@ -36,7 +36,7 @@ set(TRY_HARD_WINGS_SRC
 
 
 
-
+#file(COPY assets DESTINATION ${CMAKE_BINARY_DIR})
 add_executable(Kintama ${TRY_HARD_WINGS_SRC} ${IMGUI_SRC} external/rlImGui/rlImGui.cpp)
 target_include_directories(Kintama PUBLIC include external/rlImGui external/imgui)
 target_link_libraries(Kintama raylib)
