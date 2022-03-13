@@ -7,5 +7,10 @@
 #include "PetStats.h"
 
 void ActionPlay::Execute(Blackboard &blackboard) {
-    blackboard.SetValue(PET_SADNESS, 1.f);
+    float lastSleepiness = blackboard.GetValue(PET_SLEEPINESS);
+    if (lastSleepiness > 0.1)
+    {
+        blackboard.SetValue(PET_SADNESS, 1.f);
+        blackboard.SetValue(PET_SLEEPINESS, lastSleepiness - 0.1);
+    }
 }

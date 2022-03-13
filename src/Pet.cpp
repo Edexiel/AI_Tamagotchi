@@ -72,7 +72,8 @@ Pet::Pet() : utilitySystem("PetUtilitySystem", 0.05f , 1.f)
 
 void Pet::Update()
 {
-    needs.UpdateBlackBoard(utilitySystem.GetBlackboard());
+    if (updateStats)
+        needs.UpdateBlackBoard(utilitySystem.GetBlackboard());
 }
 
 std::string_view Pet::GetSuggestedAction()

@@ -24,4 +24,5 @@ public:
     UtilitySystem utilitySystem;
     PetActions actions;
     PetNeeds needs;
+    bool updateStats = true;
 };

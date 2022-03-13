@@ -51,7 +51,7 @@ void DevMenu::Update() {
 
         if (ImGui::CollapsingHeader("README", ImGuiTreeNodeFlags_DefaultOpen))
         {
-            ImGui::Text("This menu contains every information about the pet\n\n"
+            ImGui::TextWrapped("This menu contains every information about the pet\n\n"
                         "The \"Stats\" Menu contains the pet current statistics and corresponding buttons to fullfill them\n"
                         "The \"Utility\" Menu contains the scores of the various utilities\n"
                         "The \"Gameplay values\" menu contains editors for the various utilities\n"
@@ -122,13 +122,29 @@ void DevMenu::Update() {
             {
                 ImGui::SliderFloat("Min Score Value", &utilitySystem._minScore, 0.f, 1.f);
                 ImGui::SliderFloat("Max Score Value", &utilitySystem._maxScore, 0.f, 1.f);
-
+                ImGui::Checkbox("Update Stats in Real Time", &app->pet.updateStats);
             }
 
             if (ImGui::CollapsingHeader("Utilities"))
             {
                 ImGui::Indent();
                 InspectUtilities();
+                ImGui::Unindent();
+            }
+
+            if (ImGui::CollapsingHeader("Stat depleting rates"))
+            {
+                ImGui::Indent();
+                ImGui::PushID("Rates");
+
+                PetNeeds& petNeeds = app->pet.needs;
+
+                for (auto& need : petNeeds.needRates)
+                {
+                    ImGui::SliderFloat(need.first, &need.second, 0.f, 1.f, "%.3f", ImGuiSliderFlags_Logarithmic);
+                }
+
+                ImGui::PopID();
                 ImGui::Unindent();
             }
 
