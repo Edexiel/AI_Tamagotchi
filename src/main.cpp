@@ -4,7 +4,7 @@
 #include "imgui.h"
 #include "rlImGui.h"
 
-#include "app.h"
+#include "App.h"
 
 int main(int argc, char* argv[])
 {
@@ -15,6 +15,7 @@ int main(int argc, char* argv[])
     while (!WindowShouldClose())
     {
         app.Update();
+        app.Render();
     }
     app.Close();
 

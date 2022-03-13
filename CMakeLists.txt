@@ -14,15 +14,16 @@ set(IMGUI_SRC
         )
 
 set(TRY_HARD_WINGS_SRC
-        src/app.cpp
-        src/devMenu.cpp
+        src/App.cpp
+        src/DevMenu.cpp
         src/main.cpp
         src/UtilitySystem/UtilitySystem.cpp
         src/UtilitySystem/Blackboard.cpp
         src/UtilitySystem/UtilityBase.cpp
-        src/curves.cpp
-        src/UtilitySystem/ActionBase.cpp)
-
+        src/Pet.cpp
+        src/UtilitySystem/ActionBase.cpp
+        src/Curves.cpp
+        )
 
 
 
