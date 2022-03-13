@@ -460,12 +460,12 @@ void ShutdownRLImGui()
 
 void RLImGuiImage(const Texture *image)
 {
-    ImGui::Image((ImTextureID)image, ImVec2(float(image->width), float(image->height)));
+    ImGui::Image((ImTextureID)image, ImVec2(float(image->width), float(image->height)), ImVec2(0, 0), ImVec2(1, -1));
 }
 
 void RLImGuiImageSize(const Texture *image, int width, int height)
 {
-    ImGui::Image((ImTextureID)image, ImVec2(float(width), float(height)));
+    ImGui::Image((ImTextureID)image, ImVec2(float(width), float(height)), ImVec2(0, 0), ImVec2(1, -1));
 }
 
 void RLImGuiImageRect(const Texture* image, int destWidth, int destHeight, Rectangle sourceRect)

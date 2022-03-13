@@ -34,29 +34,35 @@ void DevMenu::Update() {
     if (IsKeyPressed(KEY_F1)) {
         isOpen = !isOpen;
     }
-}
 
-void DevMenu::Render() {
     if (isOpen) {
         ImGui::Begin("Dev menu", &isOpen);
 
-        ImGui::Text("Salut");
+        ImGui::Text("FPS: %d", GetFPS());
 
-        ImGui::SliderInt("SpriteIndex", &app->pet.spriteSheetIndex, 0, (int)Animal::Size - 1);
-        ImGui::LabelText("Animal", "%s", animalNames[app->pet.spriteSheetIndex]);
-
-        static UtilityCurves::CurveSignature currentSignature = UtilityCurves::step;
-        SelectCurve(currentSignature);
-
-        static float secondParam = 1.0f;
-        ImGui::SliderFloat("Second param", &secondParam, 0.0001, 10);
-
-        float curveValue[1000];
-        for (int i = 0; i < 1000; i++) {
-            curveValue[i] = currentSignature(i / 1000.f, secondParam);
+        if (ImGui::CollapsingHeader("Animal"))
+        {
+            ImGui::SliderInt("SpriteIndex", &app->pet.spriteSheetIndex, 0, (int)Animal::Size - 1);
+            ImGui::LabelText("Animal", "%s", animalNames[app->pet.spriteSheetIndex]);
         }
 
-        ImGui::PlotLines("Curve", curveValue, 1000, 0, NULL, FLT_MAX, FLT_MAX, ImVec2(400, 200));
+        if (ImGui::CollapsingHeader("Curves"))
+        {
+            static UtilityCurves::CurveSignature currentSignature = UtilityCurves::step;
+            SelectCurve(currentSignature);
+
+            static float secondParam = 1.0f;
+            ImGui::SliderFloat("Second param", &secondParam, 0.0001, 10);
+
+            float curveValue[1000];
+            for (int i = 0; i < 1000; i++) {
+                curveValue[i] = currentSignature(i / 1000.f, secondParam);
+            }
+
+            ImGui::PlotLines("Curve", curveValue, 1000, 0, NULL, FLT_MAX, FLT_MAX, ImVec2(400, 200));
+        }
+
+
         ImGui::End();
     }
 }

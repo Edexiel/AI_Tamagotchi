@@ -14,8 +14,6 @@ public:
 
     void Update();
 
-    void Render();
-
     void Close();
 
 private:
