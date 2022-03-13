@@ -5,7 +5,9 @@
 class ActionClean : public ActionBase
 {
 public:
-    ActionClean(const std::string_view &name): ActionBase(name) {};
+    ActionClean(const std::string_view &name): ActionBase(name) {
+        _emoji = Emoji::drops;
+    };
 
     void Execute(Blackboard& blackboard) override;
 };

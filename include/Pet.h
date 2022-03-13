@@ -9,12 +9,14 @@ class Pet {
 public:
     Pet();
 
-    void Draw(Texture &spriteSheet);
+    void Draw(Texture &spriteSheet,Texture& emojisheet);
 
     void Update();
     Rectangle GetCollisionRect();
 
+    ActionBase* GetAction();
     std::string_view GetSuggestedAction();
+    Emoji GetSuggestedEmoji();
 
     int spriteSheetIndex = 0;
     Vector2 position = {};

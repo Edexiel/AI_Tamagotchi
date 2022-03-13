@@ -20,6 +20,7 @@ private:
     DevMenu devMenu;
 
     Texture2D spriteSheet;
+    Texture2D emojiSheet;
     Pet pet;
 };
 
