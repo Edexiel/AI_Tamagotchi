@@ -23,7 +23,12 @@ set(TRY_HARD_WINGS_SRC
         src/Pet.cpp
         src/UtilitySystem/ActionBase.cpp
         src/Curves.cpp
+        src/UtilitySystem/UtilityFeeding.cpp
+        src/UtilitySystem/UtilityCleaning.cpp
+        src/UtilitySystem/UtilityIdle.cpp
+        src/UtilitySystem/UtilityPlaying.cpp
         )
+
 
 
 
