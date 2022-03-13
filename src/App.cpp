@@ -10,6 +10,7 @@
 #include "UtilitySystem/UtilityFeeding.hpp"
 #include "UtilitySystem/UtilityIdle.hpp"
 #include "UtilitySystem/UtilityPlaying.hpp"
+#include "UtilitySystem/Blackboard.hpp"
 
 void App::Init() {
     int screenWidth = 1900;
@@ -23,6 +24,11 @@ void App::Init() {
 
     devMenu.Init(this);
 
+    Blackboard blackboard{};
+
+    blackboard.SetValue("sasiety",0);
+    blackboard.SetValue("cleanliness",0);
+    blackboard.SetValue("sadness",0);
 
     UtilitySystem us{"TamagotchiSystem",1.f,};
 

@@ -5,7 +5,7 @@ class Blackboard;
 class ActionBase
 {
 protected:
-    Blackboard &_blackboard;
+    Blackboard *_blackboard;
 
     ActionBase(Blackboard &);
 

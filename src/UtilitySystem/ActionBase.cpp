@@ -1,7 +1,7 @@
 #include "UtilitySystem/ActionBase.hpp"
 #include "UtilitySystem/Blackboard.hpp"
 
-ActionBase::ActionBase(Blackboard &blackboard) : _blackboard{blackboard}
+ActionBase::ActionBase(Blackboard &blackboard) : _blackboard{&blackboard}
 {
 
 }
