@@ -2,6 +2,7 @@
 
 #include <string_view>
 #include <unordered_map>
+#include <functional>
 
 class Blackboard
 {
@@ -21,7 +22,7 @@ public:
 
 inline void Blackboard::SetValue(std::string_view name, float value)
 {
-    values[name] = value;
+    values[name] = std::clamp(value, 0.f, 1.f);
 }
 
 inline float Blackboard::GetValue(std::string_view name)

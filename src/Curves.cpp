@@ -4,11 +4,11 @@
 #include <cmath>
 
 float UtilityCurves::step(float t, float secondParam) {
-    return (t > 0.5) ? 1.0f : 0.0f;
+    return (t > secondParam) ? 1.0f : 0.0f;
 }
 
 float UtilityCurves::linear(float t, float secondParam) {
-    return t;
+    return (secondParam != 0) ? 1-t : t;
 }
 
 float UtilityCurves::exponential(float t, float secondParam) {

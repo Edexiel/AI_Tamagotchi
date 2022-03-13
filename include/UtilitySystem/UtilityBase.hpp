@@ -1,19 +1,22 @@
 #pragma once
 
 
+#include "Blackboard.hpp"
+
 class ActionBase;
 
 class UtilityBase
 {
 protected:
-    ActionBase &_action;
-
-    class Blackboard &_blackboard;
+    ActionBase* _action;
+    std::string_view _name;
 
 public:
-    UtilityBase(Blackboard &blackboard) = delete;
+    UtilityBase(std::string_view name, ActionBase* actionBase) : _name(name), _action(actionBase) {};
+    UtilityBase(UtilityBase&& utilityBase) = default;
 
-    virtual float Evaluate() const = 0;
+    virtual float Evaluate(Blackboard& blackboard) const = 0;
 
-    virtual ActionBase &GetAction() const;
+    ActionBase* GetAction() const { return _action; }
+    const std::string_view GetName() const { return _name; }
 };

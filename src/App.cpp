@@ -1,23 +1,15 @@
 #include "App.h"
 #include "DevMenu.h"
-#include "Button.h"
 
 #include "raylib.h"
 #include "raymath.h"
 #include "rlImGui.h"
 
-#include "UtilitySystem/UtilitySystem.hpp"
-#include "UtilitySystem/UtilityCleaning.hpp"
-#include "UtilitySystem/UtilityFeeding.hpp"
-#include "UtilitySystem/UtilityIdle.hpp"
-#include "UtilitySystem/UtilityPlaying.hpp"
-#include "UtilitySystem/Blackboard.hpp"
-
 #include "imgui.h"
 
 void App::Init() {
-    int screenWidth = 1900;
-    int screenHeight = 900;
+    int screenWidth = 1200;
+    int screenHeight = 720;
 
     SetTraceLogLevel(LOG_DEBUG);
     SetConfigFlags(FLAG_MSAA_4X_HINT | FLAG_VSYNC_HINT | FLAG_WINDOW_ALWAYS_RUN);
@@ -28,15 +20,6 @@ void App::Init() {
 
     devMenu.Init(this);
 
-    Blackboard blackboard{};
-
-    blackboard.SetValue("satiety",0);
-    blackboard.SetValue("cleanliness",0);
-    blackboard.SetValue("sadness",0);
-
-    UtilitySystem us{"TamagotchiSystem",1.f,};
-
-
     spriteSheet = LoadTexture("assets/animals.png");
     GenTextureMipmaps(&spriteSheet);
 
@@ -44,11 +27,14 @@ void App::Init() {
 }
 
 void App::Update() {
-    devMenu.Update();
 
     if (IsMouseButtonDown(MOUSE_BUTTON_LEFT) && CheckCollisionPointRec(GetMousePosition(), pet.GetCollisionRect())) {
         pet.position = Vector2Add(pet.position, GetMouseDelta());
     }
+
+    pet.Update();
+
+    DrawText(pet.GetSuggestedAction().data(), pet.position.x - 100.f, pet.position.y - 100.f, 24, MAGENTA);
 
     BeginDrawing();
     ClearBackground(DARKGRAY);
@@ -57,7 +43,6 @@ void App::Update() {
 
     DrawText("F1 to open dev menu", 10, 10, 24, Color{255, 0, 255, 255});
     devMenu.Update();
-
     pet.Draw(spriteSheet);
 
     EndRLImGui();
