@@ -1,3 +1,4 @@
+#include <string_view>
 #include <string>
 #include "DevMenu.h"
 #include "Curves.h"
@@ -7,6 +8,8 @@
 #include "AnimalSpriteSheet.h"
 
 #include "App.h"
+
+#include "PetStats.h"
 
 #define SELECT_FUNCTION(currentfunc, func)  \
 {                                           \
@@ -30,6 +33,13 @@ void SelectCurve(UtilityCurves::CurveSignature &currentCurve) {
     }
 }
 
+#define STAT_SLIDER(statName)                       \
+{                                                   \
+    float stat = blackboard.GetValue(statName);     \
+    ImGui::SliderFloat(statName, &stat, 0.f, 1.f);  \
+    blackboard.SetValue(statName, stat);            \
+}
+
 void DevMenu::Update() {
     if (IsKeyPressed(KEY_F1)) {
         isOpen = !isOpen;
@@ -46,6 +56,49 @@ void DevMenu::Update() {
             ImGui::LabelText("Animal", "%s", animalNames[app->pet.spriteSheetIndex]);
         }
 
+        if (ImGui::CollapsingHeader("Stats"))
+        {
+            Blackboard& blackboard = app->pet.utilitySystem.GetBlackboard();
+
+            if (ImGui::Button("Feed")) {
+                app->pet.actions.eat.Execute(blackboard);
+            }
+            ImGui::SameLine();
+            STAT_SLIDER(PET_SATIETY);
+
+            if (ImGui::Button("Clean")) {
+                app->pet.actions.clean.Execute(blackboard);
+            }
+            ImGui::SameLine();
+            STAT_SLIDER(PET_CLEANLINESS);
+
+            if (ImGui::Button("Play")) {
+                app->pet.actions.play.Execute(blackboard);
+            }
+            ImGui::SameLine();
+            STAT_SLIDER(PET_SADNESS);
+
+            if (ImGui::Button("Sleep")) {
+                app->pet.actions.sleep.Execute(blackboard);
+            }
+            ImGui::SameLine();
+            STAT_SLIDER(PET_SLEEPINESS);
+        }
+
+        if (ImGui::CollapsingHeader("Utility"))
+        {
+            Blackboard& blackboard = app->pet.utilitySystem.GetBlackboard();
+
+            ActionBase* actionSuggested = app->pet.utilitySystem.Evaluate();
+
+            ImGui::Text("Suggested action: %s", actionSuggested->GetName().data());
+
+            for (auto utility : app->pet.utilitySystem._utilities)
+            {
+                ImGui::Text("%s: %f", utility->GetName().data(), utility->Evaluate(blackboard));
+            }
+        }
+
         if (ImGui::CollapsingHeader("Curves"))
         {
             static UtilityCurves::CurveSignature currentSignature = UtilityCurves::step;
@@ -54,9 +107,12 @@ void DevMenu::Update() {
             static float secondParam = 1.0f;
             ImGui::SliderFloat("Second param", &secondParam, 0.0001, 10);
 
+            static float offset = 0.0f;
+            ImGui::SliderFloat("Offset", &offset, -1, 1);
+
             float curveValue[1000];
             for (int i = 0; i < 1000; i++) {
-                curveValue[i] = currentSignature(i / 1000.f, secondParam);
+                curveValue[i] = currentSignature(i / 1000.f + offset, secondParam);
             }
 
             ImGui::PlotLines("Curve", curveValue, 1000, 0, NULL, FLT_MAX, FLT_MAX, ImVec2(400, 200));

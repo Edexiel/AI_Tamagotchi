@@ -5,29 +5,46 @@
 #include <string_view>
 
 #include "UtilitySystem/ActionBase.hpp"
+#include "Blackboard.hpp"
+#include "UtilityBase.hpp"
 
-class UtilitySystem
-{
+class DevMenu;
+
+class UtilitySystem {
+    friend DevMenu;
 private:
     std::string_view _name;
     float _maxScore;
 
     ActionBase *_defaultAction;
 
-    std::vector<std::unique_ptr<class UtilityBase>> _utilities;
+    std::vector<UtilityBase *> _utilities;
+
+    Blackboard blackboard;
 
 public:
 
-    UtilitySystem(const std::string_view &name, float maxScore, ActionBase &defaultAction);
+    UtilitySystem(const std::string_view &name, float maxScore, ActionBase *defaultAction = nullptr);
 
-    UtilityBase *AddUtility(UtilityBase &&utility);
+    template<class UtilityType, class ActionType>
+    void AddUtility(std::string_view name, ActionType* action) {
+        _utilities.push_back((UtilityBase *) (new UtilityType(name, (ActionBase*)action)));
+    }
 
-    ActionBase &Evaluate();
+    ActionBase* Evaluate();
 
-    const std::string_view &GetName() const;
+    const std::string_view &GetName() const {
+        return _name;
+    }
 
-    ActionBase &GetDefaultAction() const;
+    ActionBase *GetDefaultAction() const {
+        return _defaultAction;
+    }
 
-    void SetDefaultAction(ActionBase &defaultAction);
+    void SetDefaultAction(ActionBase *defaultAction) {
+        _defaultAction = defaultAction;
+    }
+
+    Blackboard &GetBlackboard() { return blackboard; };
 
 };

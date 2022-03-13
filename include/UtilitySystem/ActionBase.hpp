@@ -1,19 +1,19 @@
 #pragma once
 
+#include <string_view>
+
 class Blackboard;
 
 class ActionBase
 {
-protected:
-    Blackboard *_blackboard;
-
-    ActionBase(Blackboard &);
-
+private:
+    std::string_view _name;
 public :
-    ActionBase() = delete;
+    ActionBase(std::string_view name) : _name(name) {};
+    ActionBase(ActionBase &action) = default;
+    virtual ~ActionBase() = default;
 
-    ActionBase(ActionBase &action);
-
-    virtual void Execute() = 0;
+    virtual void Execute(Blackboard& blackboard) = 0;
+    const std::string_view GetName() const { return _name; }
 };
 

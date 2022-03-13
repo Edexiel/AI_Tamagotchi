@@ -21,12 +21,17 @@ set(TRY_HARD_WINGS_SRC
         src/UtilitySystem/Blackboard.cpp
         src/UtilitySystem/UtilityBase.cpp
         src/Pet.cpp
+        src/PetStats.cpp
         src/UtilitySystem/ActionBase.cpp
+        src/UtilitySystem/Actions/ActionEat.cpp
+        src/UtilitySystem/Actions/ActionSleep.cpp
+        src/UtilitySystem/Actions/ActionClean.cpp
+        src/UtilitySystem/Actions/ActionPlay.cpp
         src/Curves.cpp
-        src/UtilitySystem/UtilityFeeding.cpp
-        src/UtilitySystem/UtilityCleaning.cpp
-        src/UtilitySystem/UtilityIdle.cpp
-        src/UtilitySystem/UtilityPlaying.cpp
+        src/UtilitySystem/Utilities/UtilityFeeding.cpp
+        src/UtilitySystem/Utilities/UtilityCleaning.cpp
+        src/UtilitySystem/Utilities/UtilityPlaying.cpp
+        src/UtilitySystem/Utilities/UtilitySleeping.cpp
         )
 
 

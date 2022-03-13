@@ -1,6 +1,13 @@
 #include "Pet.h"
 #include "AnimalSpriteSheet.h"
 
+#include "UtilitySystem/Utilities/UtilityCleaning.hpp"
+#include "UtilitySystem/Utilities/UtilityFeeding.hpp"
+#include "UtilitySystem/Utilities/UtilityPlaying.hpp"
+#include "UtilitySystem/Utilities/UtilitySleeping.hpp"
+
+#include "PetStats.h"
+
 void Pet::Draw(Texture &spriteSheet) {
     Rectangle spriteInfo{animalSpriteInfos[spriteSheetIndex][0],
                          animalSpriteInfos[spriteSheetIndex][1],
@@ -22,4 +29,28 @@ Rectangle Pet::GetCollisionRect() {
                      animalSpriteInfos[spriteSheetIndex][2],
                      animalSpriteInfos[spriteSheetIndex][3]
     };
+}
+
+Pet::Pet() : utilitySystem("PetUtilitySystem" , 1.f){
+
+    utilitySystem.SetDefaultAction(&actions.idle);
+    utilitySystem.AddUtility<UtilityFeeding>("Feeding", &actions.eat);
+    utilitySystem.AddUtility<UtilityCleaning>("Cleaning", &actions.clean);
+    utilitySystem.AddUtility<UtilityPlaying>("Playing", &actions.play);
+    utilitySystem.AddUtility<UtilitySleeping>("Sleeping", &actions.sleep);
+
+    Blackboard& blackboard = utilitySystem.GetBlackboard();
+
+    blackboard.SetValue(PET_SATIETY,1);
+    blackboard.SetValue(PET_CLEANLINESS,1);
+    blackboard.SetValue(PET_SADNESS,1);
+    blackboard.SetValue(PET_SLEEPINESS, 1);
+}
+
+void Pet::Update() {
+    needs.UpdateBlackBoard(utilitySystem.GetBlackboard());
+}
+
+std::string_view Pet::GetSuggestedAction() {
+    return utilitySystem.Evaluate()->GetName();
 }
