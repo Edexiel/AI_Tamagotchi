@@ -3,16 +3,15 @@
 #include "UtilitySystem/UtilityBase.hpp"
 
 
-UtilitySystem::UtilitySystem(const std::string_view &name, float maxScore, ActionBase *defaultAction) : _name(name),
-                                                                                                        _maxScore(
-                                                                                                                maxScore),
-                                                                                                        _defaultAction(
-                                                                                                                defaultAction)
-{}
+UtilitySystem::UtilitySystem(const std::string_view &name, float minScore, float maxScore, ActionBase *defaultAction)
+        : _name(name),
+          _minScore(minScore),
+          _maxScore(maxScore),
+          _defaultAction(defaultAction)
+          {}
 
-ActionBase* UtilitySystem::Evaluate()
-{
-    float bestScore = 0.05f;
+ActionBase *UtilitySystem::Evaluate() {
+    float bestScore = _minScore;
     ActionBase *action = _defaultAction;
 
     for (const auto &utility: _utilities) {

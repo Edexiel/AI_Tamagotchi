@@ -8,5 +8,9 @@
 
 float UtilityCleaning::Evaluate(Blackboard& blackboard) const
 {
-    return UtilityCurves::sigmoid(blackboard.GetValue(PET_CLEANLINESS), 10);
+    return _info.Evaluate(blackboard.GetValue(PET_CLEANLINESS));
+}
+
+UtilityCleaning::UtilityCleaning(const std::string_view &name, ActionBase *actionBase) : UtilityBase(name, actionBase) {
+    _info = {UtilityCurves::sigmoid, 10, 0, false};
 }

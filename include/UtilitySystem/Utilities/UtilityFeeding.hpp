@@ -5,7 +5,7 @@
 class UtilityFeeding : UtilityBase
 {
 public:
-    UtilityFeeding(const std::string_view &name, ActionBase *actionBase) : UtilityBase(name, actionBase) {};
+    UtilityFeeding(const std::string_view &name, ActionBase *actionBase);
     float Evaluate(Blackboard& blackboard) const override;
 };
 

@@ -8,5 +8,9 @@
 
 float UtilityPlaying::Evaluate(Blackboard& blackboard) const
 {
-    return UtilityCurves::sigmoid(blackboard.GetValue(PET_SADNESS) + 0.2, 10);
+    return _info.Evaluate(blackboard.GetValue(PET_SADNESS));
+}
+
+UtilityPlaying::UtilityPlaying(const std::string_view &name, ActionBase *actionBase) : UtilityBase(name, actionBase) {
+    _info = {UtilityCurves::sigmoid, 10.f, 0.2f, false};
 }

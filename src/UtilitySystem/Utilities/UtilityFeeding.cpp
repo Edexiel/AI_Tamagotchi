@@ -9,5 +9,9 @@
 
 float UtilityFeeding::Evaluate(Blackboard& blackboard) const
 {
-    return 1 - UtilityCurves::exponential(blackboard.GetValue(PET_SATIETY), 0.1);
+    return _info.Evaluate(blackboard.GetValue(PET_SATIETY));
+}
+
+UtilityFeeding::UtilityFeeding(const std::string_view &name, ActionBase *actionBase) : UtilityBase(name, actionBase) {
+    _info = {UtilityCurves::exponential, 0.1, 0, true};
 }

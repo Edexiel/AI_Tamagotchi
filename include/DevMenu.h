@@ -10,4 +10,6 @@ public:
     bool isOpen = false;
 private:
     App* app;
+
+    void InspectUtilities();
 };

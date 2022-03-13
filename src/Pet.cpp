@@ -53,7 +53,7 @@ Rectangle Pet::GetCollisionRect()
     };
 }
 
-Pet::Pet() : utilitySystem("PetUtilitySystem", 1.f)
+Pet::Pet() : utilitySystem("PetUtilitySystem", 0.05f , 1.f)
 {
 
     utilitySystem.SetDefaultAction(&actions.idle);

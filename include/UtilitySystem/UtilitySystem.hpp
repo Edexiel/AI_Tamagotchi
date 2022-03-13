@@ -15,6 +15,7 @@ class UtilitySystem {
 private:
     std::string_view _name;
     float _maxScore;
+    float _minScore;
 
     ActionBase *_defaultAction;
 
@@ -24,7 +25,7 @@ private:
 
 public:
 
-    UtilitySystem(const std::string_view &name, float maxScore, ActionBase *defaultAction = nullptr);
+    UtilitySystem(const std::string_view &name, float minScore, float maxScore, ActionBase *defaultAction = nullptr);
 
     template<class UtilityType, class ActionType>
     void AddUtility(std::string_view name, ActionType* action) {
