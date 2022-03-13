@@ -1,5 +1,6 @@
 #include "App.h"
 #include "DevMenu.h"
+#include "Button.h"
 
 #include "raylib.h"
 #include "raymath.h"
@@ -11,10 +12,13 @@
 #include "UtilitySystem/UtilityIdle.hpp"
 #include "UtilitySystem/UtilityPlaying.hpp"
 
+#include "imgui.h"
+
 void App::Init() {
     int screenWidth = 1900;
     int screenHeight = 900;
 
+    SetTraceLogLevel(LOG_DEBUG);
     SetConfigFlags(FLAG_MSAA_4X_HINT | FLAG_VSYNC_HINT | FLAG_WINDOW_ALWAYS_RUN);
     InitWindow(screenWidth, screenHeight, "Kintama");
     //SetTargetFPS(120);
@@ -24,7 +28,7 @@ void App::Init() {
     devMenu.Init(this);
 
 
-    UtilitySystem us{"TamagotchiSystem",1.f,};
+//    UtilitySystem us{"TamagotchiSystem",1.f,};
 
 
     spriteSheet = LoadTexture("assets/animals.png");
