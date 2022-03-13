@@ -30,11 +30,11 @@ void App::Init() {
 
     Blackboard blackboard{};
 
-    blackboard.SetValue("sasiety",0);
+    blackboard.SetValue("satiety",0);
     blackboard.SetValue("cleanliness",0);
     blackboard.SetValue("sadness",0);
 
-//    UtilitySystem us{"TamagotchiSystem",1.f,};
+    UtilitySystem us{"TamagotchiSystem",1.f,};
 
 
     spriteSheet = LoadTexture("assets/animals.png");
