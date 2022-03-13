@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.17)
-project(Tamagotchi LANGUAGES CXX C)
+project(Kintama LANGUAGES CXX C)
 
 set(CMAKE_CXX_STANDARD 17)
 
@@ -17,15 +17,23 @@ set(TRY_HARD_WINGS_SRC
         src/App.cpp
         src/DevMenu.cpp
         src/main.cpp
-        src/UtilitySystem/Action.cpp
+        src/UtilitySystem/UtilitySystem.cpp
         src/UtilitySystem/Blackboard.cpp
         src/UtilitySystem/UtilityBase.cpp
+        src/Pet.cpp
+        src/UtilitySystem/ActionBase.cpp
         src/Curves.cpp
-        src/Pet.cpp)
+        src/UtilitySystem/UtilityFeeding.cpp
+        src/UtilitySystem/UtilityCleaning.cpp
+        src/UtilitySystem/UtilityIdle.cpp
+        src/UtilitySystem/UtilityPlaying.cpp
+        )
 
 
-add_executable(Tamagotchi ${TRY_HARD_WINGS_SRC} ${IMGUI_SRC} external/rlImGui/rlImGui.cpp)
-target_include_directories(Tamagotchi PUBLIC include external/rlImGui external/imgui)
-target_link_libraries(Tamagotchi raylib)
+
+
+add_executable(Kintama ${TRY_HARD_WINGS_SRC} ${IMGUI_SRC} external/rlImGui/rlImGui.cpp)
+target_include_directories(Kintama PUBLIC include external/rlImGui external/imgui)
+target_link_libraries(Kintama raylib)
 
 message(STATUS "FLAGS: ${CMAKE_CXX_FLAGS}")

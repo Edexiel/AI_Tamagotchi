@@ -5,17 +5,27 @@
 #include "raymath.h"
 #include "rlImGui.h"
 
+#include "UtilitySystem/UtilitySystem.hpp"
+#include "UtilitySystem/UtilityCleaning.hpp"
+#include "UtilitySystem/UtilityFeeding.hpp"
+#include "UtilitySystem/UtilityIdle.hpp"
+#include "UtilitySystem/UtilityPlaying.hpp"
+
 void App::Init() {
     int screenWidth = 1900;
     int screenHeight = 900;
 
     SetConfigFlags(FLAG_MSAA_4X_HINT | FLAG_VSYNC_HINT | FLAG_WINDOW_ALWAYS_RUN);
-    InitWindow(screenWidth, screenHeight, "Kintama aka le projet couille");
+    InitWindow(screenWidth, screenHeight, "Kintama");
     //SetTargetFPS(120);
     SetupRLImGui(true);
     ImGui::GetIO().ConfigWindowsMoveFromTitleBarOnly = true;
 
     devMenu.Init(this);
+
+
+    UtilitySystem us{"TamagotchiSystem",1.f,};
+
 
     spriteSheet = LoadTexture("assets/animals.png");
     GenTextureMipmaps(&spriteSheet);
